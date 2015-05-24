@@ -4,7 +4,8 @@ module Rookery
       format :json
 
       mount ::Rookery::API::Ping
+      mount ::Rookery::API::Users
 
     end # class Core
   end # module API
-end # module Comotion
+end # module Rookery

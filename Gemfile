@@ -13,8 +13,8 @@ gem 'grape-entity'
 gem 'grape-swagger'
 
 # Database
-gem 'neo4j-core',  github: 'neo4jrb/neo4j-core',  branch: 'master'
-gem 'active_attr', github: 'neo4jrb/active_attr', branch: 'performance'
+gem 'neo4j'
+gem 'neo4j-will_paginate_redux'
 
 group :development do
   gem 'guard'
