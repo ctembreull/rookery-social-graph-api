@@ -46,16 +46,30 @@ namespace :db do
     json         = JSON.parse(profile_file)
     json.each do |profile|
       user = Rookery::Data::User.find_by(legacy_id: profile['user_id'])
-      if user.nil?
-        puts "SKIPPING: legacy_id #{profile['user_id']}"
-      else
+      unless user.nil?
         puts "Seeding profile for user: #{user.email_address}"
         profile.keys.each do |k|
+          next if profile[k].nil?
           next unless user.profile.respond_to? k
           user.profile[k] = profile[k]
         end
-        user.profile.save
 
+        puts "Seeding tags for user: #{user.email_address}"
+        unless (profile['interests'].empty? || profile['interests'].nil?)
+          interest_array = profile['interests'].split(',')
+          interest_array.each do |i|
+            i = i.strip
+            puts "TAG: #{i}"
+            interest = Rookery::Data::Interest.find_or_create_by(
+              tag:   Rookery::Data::Interest.title_to_tag(i)
+            )
+            if (interest.title.nil?)
+              interest.title = i
+              interest.save
+            end
+            user.interests << interest unless interest.nil?
+          end
+        end
         #TODO: interests (they're on the profile)
       end
     end

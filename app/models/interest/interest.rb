@@ -3,12 +3,16 @@ module Rookery
     class Interest
       include Neo4j::ActiveNode
 
-      property  :name
-      validates :name, presence: true, uniqueness: true
+      property  :title, type: String
+      property  :tag,   type: String, index: :exact
 
-      has_many :out, :interested_users, model_class: 'Rookery::Data::User', relation_class: 'Rookery::Data::InterestRelation'
+      validates :tag, presence: true, uniqueness: true
 
+      has_many :out, :interested_users, type: :interests, model_class: 'Rookery::Data::User'
 
+      def self.title_to_tag(title)
+        title.strip.downcase.tr(' ', '_')
+      end
 
     end # class Interest
   end # module Data

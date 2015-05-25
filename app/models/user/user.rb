@@ -4,7 +4,7 @@ module Rookery
       include Neo4j::ActiveNode
 
       has_one  :in,   :profile,   type: :profile,   model_class: 'Rookery::Data::UserProfile', dependent: :delete
-      has_many :in,   :interests, model_class: 'Rookery::Data::Interest', rel_class: 'Rookery::Data::InterestRelation'
+      has_many :in,   :interests, type: :interests, model_class: 'Rookery::Data::Interest'
       has_many :both, :friends,   model_class: 'Rookery::Data::User',     rel_class: 'Rookery::Data::FriendRelation'
 
       property :email_address, type: String, index: :exact
