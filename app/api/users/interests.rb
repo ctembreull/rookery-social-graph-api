@@ -12,7 +12,7 @@ module Rookery
             desc 'Retrieve a string array of interests for the given user.'
             get do
               user = Rookery::Data::User.find_by(uuid: params[:user_id])
-              user.interests.map {|i| i.name} # => ['foo', 'bar', 'baz', '...']
+              user.interests.map {|i| i.title} # => ['foo', 'bar', 'baz', '...']
             end
 
             ### COMPOSITIONAL STYLE: POST/DELETE individual interests

@@ -11,9 +11,10 @@ module Rookery
         expose :created_at
         expose :updated_at
       end
-      expose :profile, using: Rookery::Entity::UserProfile, if: {type: :full}
-      with_options(format_with: :to_string_array) do
-        expose :interests
+      expose :profile,   using: Rookery::Entity::UserProfile, if: {type: :full}
+
+      expose :interests, using: Rookery::Entity::Interest do |user, options|
+        user.interests.to_a
       end
     end
   end

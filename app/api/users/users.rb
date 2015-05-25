@@ -45,7 +45,7 @@ module Rookery
           desc 'Get a user object'
           get do
             user = Rookery::Data::User.find_by(uuid: params[:user_id])
-            Rookery::Entity::User.represent(users, {type: :full})
+            Rookery::Entity::User.represent(user, {type: :full})
           end
 
           desc 'Update a user object'
