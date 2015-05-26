@@ -16,7 +16,7 @@ codebase approaches production quality.
 Kitematic is a Docker helper app that takes the command-line hassle out of managing
 Docker containers. It's free. Download it from [https://kitematic.com] (https://kitematic.com)
 
-3. Find and install the `docker-neo4j:latest` image, from Kenny Bastani, and start it up. This should give you a copy of Neo4j ~> 2.3.0. Kitematic likes to set the ports strangely, in my case the server was running at http://192.168.99.100:32769. Whatever IP and port it gives you, paste it into config/initializers/neo4j_session.rb. `TODO: config-file that.`
+3. Find and install the `docker-neo4j:latest` image, from Kenny Bastani, and start it up. This should give you a copy of Neo4j ~> 2.3.0. Kitematic likes to set the ports strangely, in my case the server was running at http://192.168.99.100:32769. Whatever IP and port it gives you, paste those values into `config/database.yml`.
 
 4. From your cloned project directory, run `bundle install`
 
