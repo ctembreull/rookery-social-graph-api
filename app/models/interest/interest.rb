@@ -9,6 +9,7 @@ module Rookery
       validates :tag, presence: true, uniqueness: true
 
       has_many :out, :interested_users, type: :interests, model_class: 'Rookery::Data::User'
+      has_many :out, :interested_teams, type: :interests, model_class: 'Rookery::Data::Team'
 
       def self.title_to_tag(title)
         title.strip.downcase.tr(' ', '_')
