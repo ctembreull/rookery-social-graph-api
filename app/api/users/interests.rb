@@ -26,8 +26,8 @@ module Rookery
               post do
                 # This either creates the interest or retrieves the one in the DB. Slowish.
                 user     = Rookery::Data::User.find_by(uuid: params[:user_id])
-                interest = Rookery::Data::Interest.find_or_create_by(name: params[:interest_id])
-                Rookery::Data::InterestRelation.create(from_node: interest, to_node: user)
+                interest = Rookery::Data::Interest.find_or_create_by(tag: params[:interest_id])
+
                 # return what?
               end
 

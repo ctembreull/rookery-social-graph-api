@@ -13,7 +13,7 @@ module Rookery
       end
       expose :profile,   using: Rookery::Entity::UserProfile, if: {type: :full}
 
-      expose :interests, using: Rookery::Entity::Interest do |user, options|
+      expose :interests, using: Rookery::Entity::Interest, if: {type: :full} do |user, options|
         user.interests.to_a
       end
     end
